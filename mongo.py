@@ -5,13 +5,10 @@ from nltk.tokenize import word_tokenize
 
 client = MongoClient()
 scrapy = client.scrapy
-yahoo = scrapy.yahoo
-html = yahoo.find_one()
+bbc = scrapy.bbc
+html = bbc.find_one()
 
-text = nltk.word_tokenize(html['title'])
+text = nltk.word_tokenize(html['body'])
 result = nltk.pos_tag(text)
 print result
 
-text = nltk.word_tokenize("And now for something completely different")
-result = nltk.pos_tag(text)
-print result
