@@ -11,11 +11,14 @@ bbc = scrapy.bbc
 html = bbc.find_one()
 
 # tokens
-tokens = nltk.word_tokenize(html['body'])
 # identify
-result = nltk.pos_tag(tokens)
 
-# parse tree
-tree = treebank.parsed_sents('wsj_0001.mrg')[0]
+def title_preprocess(document):
+	sentences = nltk.sent_tokenize(document)
+	sentences = [nltk.word_tokenize(sent) for sent in sentences] 
+	sentences = [nltk.pos_tag(sent) for sent in sentences] 
 
-tree.draw()
+	print sentences
+
+
+title_preprocess(html['title'])
