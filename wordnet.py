@@ -9,6 +9,21 @@ bbc = scrapy.bbc
 html = bbc.find_one()
 
 tokens = nltk.word_tokenize(html['title'])
+lists = []
+
+for t in tokens:
+	lists.append(wordnet.synsets(t))
 
 
-print wordnet.synsets(tokens[0])
+word = lists[0][0]
+
+
+def word_process(word):
+	print word
+	print word.hypernyms()
+	print word.lemmas
+	print word.entailments()
+
+
+
+word_process(word)
